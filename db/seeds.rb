@@ -1,7 +1,6 @@
 mr_robot_desc = "Young, anti-social computer programmer Elliot works as a cybersecurity engineer during the day, but at night he is a vigilante hacker. He is recruited by the mysterious leader of an underground group of hackers to join their organization. Elliot's task? Help bring down corporate America, including the company he is paid to protect, which presents him with a moral dilemma."
 
 house_of_cards_desc = "U.S. Rep. Francis Underwood of South Carolina starts out as a ruthless politician seeking revenge in this Netflix original production."
-
 better_call_saul_desc = "He wasn't always Saul Goodman, ace attorney for chemist-turned-meth dealer Walter White. Six years before he begins to represent Albuquerque's most notorious criminal, Goodman is Jimmy McGill, a small-time attorney hustling to make a name for himself."
 
 family_guy_desc = "Sick, twisted and politically incorrect, the animated series features the adventures of the Griffin family. Endearingly ignorant Peter and his stay-at-home wife Lois reside in Quahog, R.I., and have three kids."
@@ -16,25 +15,28 @@ futurama_desc = "Accidentally frozen, pizza-deliverer Fry wakes up 1,000 years i
 
 south_park_desc = "Follows the misadventures of four irreverent grade-schoolers in the quiet, dysfunctional town of South Park, Colorado."
 
-["Drama", "Comedy", "SciFi"].each do |name|
-  Category.create(name: name)
-end
+comedy = Category.create(name: "Comedy")
+scifi = Category.create(name: "Sci Fi")
+drama = Category.create(name: "Drama")
 
-Video.create(title: "Mr. Robot", description: mr_robot_desc, small_cover_url: "/tmp/mr_robot.jpg", large_cover_url: "/tmp/mr_robot_large.jpg", category_id: 3)
+Video.create(title: "Mr. Robot", description: mr_robot_desc, small_cover_url: "/tmp/mr_robot.jpg", large_cover_url: "/tmp/mr_robot_large.jpg", category: scifi)
+Video.create(title: "Westworld", description: westworld_desc, small_cover_url: "/tmp/westworld.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: scifi)
 
-Video.create(title: "House of Cards", description: house_of_cards_desc, small_cover_url: "/tmp/house_of_cards.jpg", large_cover_url: "/tmp/house_of_cards_large.jpg", category_id: 1)
+Video.create(title: "House of Cards", description: house_of_cards_desc, small_cover_url: "/tmp/house_of_cards.jpg", large_cover_url: "/tmp/house_of_cards_large.jpg", category: drama)
+Video.create(title: "Breaking Bad", description: breaking_bad_desc, small_cover_url: "/tmp/breaking_bad.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: drama)
 
-Video.create(title: "Better Call Saul", description: better_call_saul_desc, small_cover_url: "/tmp/better_call_saul.jpg", large_cover_url: "/tmp/better_call_saul_large.jpg", category_id: 2)
+Video.create(title: "Better Call Saul", description: better_call_saul_desc, small_cover_url: "/tmp/better_call_saul.jpg", large_cover_url: "/tmp/better_call_saul_large.jpg", category: comedy)
+Video.create(title: "Better Call Saul", description: better_call_saul_desc, small_cover_url: "/tmp/better_call_saul.jpg", large_cover_url: "/tmp/better_call_saul_large.jpg", category: comedy)
+Video.create(title: "Family Guy", description: family_guy_desc, small_cover_url: "/tmp/family_guy.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
+Video.create(title: "Family Guy", description: family_guy_desc, small_cover_url: "/tmp/family_guy.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
+Video.create(title: "Monk", description: monk_desc, small_cover_url: "/tmp/monk.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
+Video.create(title: "Futurama", description: futurama_desc, small_cover_url: "/tmp/futurama.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
+Video.create(title: "South Park", description: south_park_desc, small_cover_url: "/tmp/south_park.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
 
-Video.create(title: "Family Guy", description: family_guy_desc, small_cover_url: "/tmp/family_guy.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category_id: 2)
+User.create(email: "dave@test.com", password: "test", full_name: "Dave Renz")
+User.create(email: "joe@test.com", password: "joe", full_name: "Joe Smith")
 
-Video.create(title: "Westworld", description: westworld_desc, small_cover_url: "/tmp/westworld.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category_id: 3)
 
-Video.create(title: "Monk", description: monk_desc, small_cover_url: "/tmp/monk.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category_id: 2)
 
-Video.create(title: "Futurama", description: futurama_desc, small_cover_url: "/tmp/futurama.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category_id: 2)
 
-Video.create(title: "South Park", description: south_park_desc, small_cover_url: "/tmp/south_park.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category_id: 2)
-
-Video.create(title: "Breaking Bad", description: breaking_bad_desc, small_cover_url: "/tmp/breaking_bad.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category_id: 1)
 

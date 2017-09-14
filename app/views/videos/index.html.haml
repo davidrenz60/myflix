@@ -3,5 +3,5 @@
     %header
       %h3= category.name
     .videos.row
-      - category.videos.each do |video|
+      - category.recent_videos.each do |video|
         = render 'video', video: video
