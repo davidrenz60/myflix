@@ -33,7 +33,7 @@ Video.create(title: "Monk", description: monk_desc, small_cover_url: "/tmp/monk.
 Video.create(title: "Futurama", description: futurama_desc, small_cover_url: "/tmp/futurama.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
 Video.create(title: "South Park", description: south_park_desc, small_cover_url: "/tmp/south_park.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
 
-User.create(email: "dave@test.com", password: "test", full_name: "Dave Renz")
+User.create(email: "dave@test.com", password: "dave", full_name: "Dave Renz")
 User.create(email: "joe@test.com", password: "joe", full_name: "Joe Smith")
 
 
