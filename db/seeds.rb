@@ -22,7 +22,7 @@ scifi = Category.create(name: "Sci Fi")
 drama = Category.create(name: "Drama")
 
 mr_robot = Video.create(title: "Mr. Robot", description: mr_robot_desc, small_cover_url: "/tmp/mr_robot.jpg", large_cover_url: "/tmp/mr_robot_large.jpg", category: scifi)
-Video.create(title: "Westworld", description: westworld_desc, small_cover_url: "/tmp/westworld.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: scifi)
+westworld = Video.create(title: "Westworld", description: westworld_desc, small_cover_url: "/tmp/westworld.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: scifi)
 
 Video.create(title: "House of Cards", description: house_of_cards_desc, small_cover_url: "/tmp/house_of_cards.jpg", large_cover_url: "/tmp/house_of_cards_large.jpg", category: drama)
 Video.create(title: "Breaking Bad", description: breaking_bad_desc, small_cover_url: "/tmp/breaking_bad.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: drama)
@@ -40,3 +40,7 @@ joe = User.create(email: "joe@test.com", password: "joe", full_name: "Joe Smith"
 
 Review.create(rating: 2, content: lorem, user: dave, video: mr_robot)
 Review.create(rating: 4, content: lorem, user: joe, video: mr_robot)
+
+QueueItem.create(user: dave, video: mr_robot)
+QueueItem.create(user: dave, video: westworld)
+
