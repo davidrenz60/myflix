@@ -2,6 +2,7 @@ class QueueItem < ActiveRecord::Base
   belongs_to :user
   belongs_to :video
   validates_presence_of :user, :video
+  validates :video, uniqueness: { scope: :user }
 
   delegate :category, to: :video
   delegate :title, to: :video, prefix: "video"
