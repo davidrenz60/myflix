@@ -5,7 +5,8 @@ describe QueueItem do
   it { should belong_to(:video) }
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:video) }
-  # it { should validate_uniqueness_of(:video).scoped_to(:user) }
+  # TODO: figure out how to test it { should validate_uniqueness_of(:video).scoped_to(:user) }
+  it { should validate_numericality_of(:position).only_integer }
 
   describe '#video_title' do
     it 'should return the associated video title' do
