@@ -20,6 +20,7 @@ class QueueItem < ActiveRecord::Base
     if review
       review.update_attribute(:rating, new_rating)
     else
+      return if new_rating.blank?
       Review.new(rating: new_rating, user: user, video: video).save(validate: false)
     end
   end

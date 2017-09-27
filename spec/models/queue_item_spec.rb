@@ -33,33 +33,30 @@ describe QueueItem do
   end
 
   describe '#rating=' do
-    it 'creates a review with the rating if the review was not present' do
-      video = Fabricate(:video)
-      user = Fabricate(:user)
-      queue_item = Fabricate(:queue_item, user: user, video: video)
+    let(:user) { Fabricate(:user) }
+    let(:video) { Fabricate(:video) }
+    let(:queue_item) { Fabricate(:queue_item, user: user, video: video) }
 
+    it 'creates a review with the rating if the review was not present' do
       queue_item.rating = 5
       expect(Review.first.rating).to eq(5)
     end
 
     it 'updates the associated review if the review is present' do
-      video = Fabricate(:video)
-      user = Fabricate(:user)
-      review = Fabricate(:review, user: user, video: video, rating: 2)
-      queue_item = Fabricate(:queue_item, user: user, video: video)
-
+      Fabricate(:review, user: user, video: video, rating: 2)
       queue_item.rating = 5
       expect(Review.first.rating).to eq(5)
     end
 
     it 'clears the rating of the review if the review is present' do
-      video = Fabricate(:video)
-      user = Fabricate(:user)
-      review = Fabricate(:review, user: user, video: video, rating: 2)
-      queue_item = Fabricate(:queue_item, user: user, video: video)
-
+      Fabricate(:review, user: user, video: video, rating: 2)
       queue_item.rating = nil
       expect(Review.first.rating).to be_nil
+    end
+
+    it 'does not create a new review if a review was not present' do
+      queue_item.rating = ""
+      expect(Review.count).to be(0)
     end
   end
 
