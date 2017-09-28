@@ -8,7 +8,7 @@ describe UsersController do
     end
 
     it 'redirects to home page if authenticated' do
-      session[:user_id] = Fabricate(:user)
+      set_current_user
       get :new
       expect(response).to redirect_to home_path
     end

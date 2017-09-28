@@ -8,7 +8,7 @@ describe SessionsController do
     end
 
     it 'redirects to home page if logged in' do
-      session[:user_id] = Fabricate(:user).id
+      set_current_user
       get :new
       expect(response).to redirect_to home_path
     end
@@ -38,29 +38,25 @@ describe SessionsController do
     context 'with invalid credentials' do
       let(:alice) { Fabricate(:user) }
 
-      before do
-        post :create, email: alice.email, password: alice.password + "123"
-      end
-
       it 'does not set the session user_id' do
+        post :create, email: alice.email, password: alice.password + "123"
         expect(session[:user_id]).to be_nil
       end
 
-      it 'redirects to the sign in page' do
-        expect(response).to redirect_to sign_in_path
+      it 'sets a flash message' do
+        post :create, email: alice.email, password: alice.password + "123"
+        expect(flash[:danger]).not_to be_nil
       end
 
-      it 'sets a flash message' do
-        expect(flash[:danger]).not_to be_nil
+      it_behaves_like "require sign in" do
+        let(:action) { post :create, email: alice.email, password: alice.password + "123" }
       end
     end
   end
 
   describe 'GET destroy' do
-    let(:alice) { Fabricate(:user) }
-
     before do
-      session[:user_id] = alice.id
+      set_current_user
       post :destroy
     end
 
