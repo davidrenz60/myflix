@@ -16,7 +16,7 @@ Myflix::Application.routes.draw do
 
   resources :queue_items, only: [:create, :destroy]
   resources :sessions, only: [:create]
-  resources :users, only: [:create]
+  resources :users, only: [:create, :show]
   resources :categories, only: [:show]
   get 'ui(/:action)', controller: 'ui'
 end
