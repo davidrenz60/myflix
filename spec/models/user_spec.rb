@@ -8,6 +8,10 @@ describe User do
   it { should validate_presence_of(:full_name) }
   it { should validate_uniqueness_of(:email) }
   it { should have_secure_password }
+  it { should have_many(:followers).through(:leading_relationships) }
+  it { should have_many(:leading_relationships).class_name("Relationship").with_foreign_key("leader_id") }
+  it { should have_many(:leaders).through(:following_relationships) }
+  it { should have_many(:following_relationships).class_name("Relationship").with_foreign_key("follower_id") }
 
   describe "#video_in_queue?" do
     it "should return true if the video is in the queue for the user" do

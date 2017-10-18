@@ -37,10 +37,20 @@ Video.create(title: "South Park", description: south_park_desc, small_cover_url:
 
 dave = User.create(email: "dave@test.com", password: "dave", full_name: "Dave Renz")
 joe = User.create(email: "joe@test.com", password: "joe", full_name: "Joe Smith")
+alice = User.create(email: "alice@test.com", password: "alice", full_name: "Alice Jones")
+bob = User.create(email: "bob@test.com", password: "bob", full_name: "Bob Anderson")
+
+Relationship.create(leader: alice, follower: dave)
+Relationship.create(leader: alice, follower: joe)
+Relationship.create(leader: joe, follower: dave)
+Relationship.create(leader: bob, follower: dave)
+Relationship.create(leader: dave, follower: alice)
 
 Review.create(rating: 2, content: lorem, user: dave, video: mr_robot)
 Review.create(rating: 4, content: lorem, user: joe, video: mr_robot)
 
 QueueItem.create(user: dave, video: mr_robot, position: 1)
 QueueItem.create(user: dave, video: westworld, position: 2)
+QueueItem.create(user: alice, video: westworld, position: 1)
+QueueItem.create(user: alice, video: mr_robot, position: 2)
 
