@@ -27,4 +27,18 @@ describe User do
       expect(alice.video_in_queue?(monk)).to be false
     end
   end
+
+  describe "#follows?" do
+    let(:alice) { Fabricate(:user) }
+    let(:bob) { Fabricate(:user) }
+
+    it "should return true if the user follows the other user" do
+      Fabricate(:relationship, leader: bob, follower: alice)
+      expect(alice.follows?(bob)).to eq(true)
+    end
+
+    it "should return false if the user does not follow the other user" do
+      expect(alice.follows?(bob)).to eq(false)
+    end
+  end
 end
