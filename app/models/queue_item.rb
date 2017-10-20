@@ -8,10 +8,6 @@ class QueueItem < ActiveRecord::Base
   delegate :category, to: :video
   delegate :title, to: :video, prefix: "video"
 
-  def video_title
-    video.title
-  end
-
   def rating
     review.rating if review
   end
