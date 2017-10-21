@@ -62,7 +62,7 @@ GEM
     debug_inspector (0.0.2)
     diff-lcs (1.2.5)
     erubis (2.7.0)
-    eventmachine (1.0.0)
+    eventmachine (1.0.4)
     execjs (2.0.2)
     fabrication (2.16.3)
     faker (1.8.4)
@@ -79,7 +79,7 @@ GEM
     jquery-rails (3.0.4)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
-    json (1.8.1)
+    json (1.8.6)
     launchy (2.4.3)
       addressable (~> 2.3)
     letter_opener (1.4.1)
@@ -192,10 +192,12 @@ DEPENDENCIES
   capybara
   coffee-rails
   database_cleaner (= 1.4.1)
+  eventmachine (= 1.0.4)
   fabrication
   faker
   haml-rails
   jquery-rails
+  json (= 1.8.6)
   launchy
   letter_opener
   pg
@@ -209,3 +211,9 @@ DEPENDENCIES
   thin
   uglifier
   vcr (= 2.9.3)
+
+RUBY VERSION
+   ruby 2.2.8p477
+
+BUNDLED WITH
+   1.16.0.pre.3
