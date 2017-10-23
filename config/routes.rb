@@ -21,5 +21,9 @@ Myflix::Application.routes.draw do
   resources :sessions, only: [:create]
   resources :users, only: [:create, :show]
   resources :categories, only: [:show]
+  get '/forgot_password', to: 'forgot_passwords#new'
+  get '/forgot_password_confirmation', to: 'forgot_passwords#confirm'
+  resources :forgot_passwords, only: [:create]
+
   get 'ui(/:action)', controller: 'ui'
 end
