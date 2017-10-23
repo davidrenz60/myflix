@@ -2,22 +2,20 @@ require "spec_helper"
 
 describe ResetPasswordsController do
   describe "GET show" do
-    let(:alice) { Fabricate(:user) }
+    let(:alice) { Fabricate(:user, token: "1234") }
 
     it "sets @token" do
-      alice.update_column(:token, "1234")
-      get :show, id: "1234"
-      expect(assigns(:token)).to eq("1234")
+      get :show, id: alice.token
+      expect(assigns(:token)).to eq(alice.token)
     end
 
     it "renders the show template if the token is valid" do
-      alice.update_column(:token, "1234")
-      get :show, id: "1234"
+      get :show, id: alice.token
       expect(response).to render_template(:show)
     end
 
     it "redirects to the expired token page if the token is invalid" do
-      get :show, id: "1234"
+      get :show, id: alice.token + "123"
       expect(response).to redirect_to invalid_token_path
     end
   end
@@ -25,12 +23,10 @@ describe ResetPasswordsController do
   describe "POST create" do
     context "with a valid token" do
       context "with valid password" do
-        let(:alice) { Fabricate(:user, password: "old_password") }
-        let(:token) { "1234" }
+        let(:alice) { Fabricate(:user, password: "old_password", token: "1234") }
 
         before do
-          alice.update_column(:token, token)
-          post :create, token: token, password: "new_password"
+          post :create, token: alice.token, password: "new_password"
         end
 
         it "sets a new password" do
@@ -51,12 +47,10 @@ describe ResetPasswordsController do
       end
 
       context "with an invalid password" do
-        let(:alice) { Fabricate(:user, password: "old_password") }
-        let(:token) { "1234" }
+        let(:alice) { Fabricate(:user, password: "old_password", token: "1234") }
 
         before do
-          alice.update_column(:token, token)
-          post :create, token: token, password: ""
+          post :create, token: alice.token, password: ""
         end
 
         it "does not update the user's password" do
@@ -64,7 +58,7 @@ describe ResetPasswordsController do
         end
 
         it "does not update the user's token" do
-          expect(alice.reload.token).to eq(token)
+          expect(alice.reload.token).to eq(alice.token)
         end
 
         it "sets a flash message" do
@@ -78,15 +72,15 @@ describe ResetPasswordsController do
     end
 
     context "with an invalid token" do
-      let(:alice) { Fabricate(:user, password: "old_password") }
+      let(:alice) { Fabricate(:user, password: "old_password", token: "1234") }
 
       it "redirects to the invalid token path with a different token" do
-        post :create, token: "1234", password: "new_password"
+        post :create, token: "abcd", password: "new_password"
         expect(response).to redirect_to invalid_token_path
       end
 
       it "redirects to the invalid token path with a nil token" do
-        post :create, token: alice.token, password: "new_password"
+        post :create, token: nil, password: "new_password"
         expect(response).to redirect_to invalid_token_path
       end
     end
