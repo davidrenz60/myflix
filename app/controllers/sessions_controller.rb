@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
     if user && user.authenticate(params[:password])
       session[:user_id] = user.id
-      flash[:success] = "You are signed in."
+      flash[:success] = "Welcome #{user.full_name}! You are signed in."
       redirect_to home_path
     else
       flash[:danger] = "Incorrect email or password. Please try again."

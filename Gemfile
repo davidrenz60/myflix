@@ -29,6 +29,7 @@ end
 
 group :test do
   gem 'capybara'
+  gem 'capybara-email'
   gem 'database_cleaner', '1.4.1'
   gem 'fabrication'
   gem 'faker'
