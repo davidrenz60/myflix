@@ -11,6 +11,10 @@ describe ForgotPasswordsController do
         expect(ActionMailer::Base.deliveries.last.to).to eq([user.email])
       end
 
+      it "generates a token for the user" do
+        expect(user.reload.token).to be_present
+      end
+
       it "redirects to the forgot password confirmation page" do
         expect(response).to redirect_to forgot_password_confirmation_path
       end

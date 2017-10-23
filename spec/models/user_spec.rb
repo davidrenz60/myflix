@@ -13,22 +13,25 @@ describe User do
   it { should have_many(:leaders).through(:following_relationships) }
   it { should have_many(:following_relationships).class_name("Relationship").with_foreign_key("follower_id") }
 
-  it "generates a random token when the user is created" do
-    alice = Fabricate(:user)
-    expect(alice.token).to be_present
+  describe "#generate_token" do
+    let(:alice) { Fabricate(:user) }
+
+    it "sets a token for the user" do
+      alice.generate_token
+      expect(alice.reload.token).to be_present
+    end
   end
 
   describe "#video_in_queue?" do
+    let(:alice) { Fabricate(:user) }
+    let(:monk) { Fabricate(:video) }
+
     it "should return true if the video is in the queue for the user" do
-      alice = Fabricate(:user)
-      monk = Fabricate(:video)
-      queue_item = Fabricate(:queue_item, user: alice, video: monk)
+      Fabricate(:queue_item, user: alice, video: monk)
       expect(alice.video_in_queue?(monk)).to be true
     end
 
     it "should return false if the video is not in the queue for the user" do
-      alice = Fabricate(:user)
-      monk = Fabricate(:video)
       expect(alice.video_in_queue?(monk)).to be false
     end
   end

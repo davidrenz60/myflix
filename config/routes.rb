@@ -25,7 +25,7 @@ Myflix::Application.routes.draw do
   get '/forgot_password_confirmation', to: 'forgot_passwords#confirm'
   get '/invalid_token', to: 'reset_passwords#invalid_token'
   resources :forgot_passwords, only: [:create]
-  resources :reset_passwords, only: [:show]
+  resources :reset_passwords, only: [:show, :create]
 
   get 'ui(/:action)', controller: 'ui'
 end
