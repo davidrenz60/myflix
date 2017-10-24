@@ -16,13 +16,14 @@ describe InvitationsController do
   describe "POST create" do
     context "with authenticated user" do
       let(:alice) { Fabricate(:user) }
-      after { ActionMailer::Base.deliveries.clear }
 
       context "with valid inputs" do
         before do
           set_current_user(alice)
           post :create, invitation: { recipient_name: "Bob Smith", recipient_email: "bob@test.com", message: "Sign up!" }
         end
+
+        after { ActionMailer::Base.deliveries.clear }
 
         it "creates a new invitation" do
           expect(Invitation.count).to eq(1)
