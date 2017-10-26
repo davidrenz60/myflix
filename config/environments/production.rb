@@ -8,6 +8,8 @@ Myflix::Application.configure do
     authentication:  :plain
   }
 
+  config.action_mailer.default_url_options = { :host => "drenz-myflix.herokuapp.com" }
+
   ActionMailer::Base.delivery_method = :smtp
 
   config.cache_classes = true
