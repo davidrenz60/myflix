@@ -13,12 +13,8 @@ describe User do
   it { should have_many(:leaders).through(:following_relationships) }
   it { should have_many(:following_relationships).class_name("Relationship").with_foreign_key("follower_id") }
 
-  describe "it generates a token when a user is created" do
-    let(:alice) { Fabricate(:user) }
-
-    it "sets a token for the user" do
-      expect(alice.token).to be_present
-    end
+  it_behaves_like "tokenable" do
+    let(:model) { Fabricate(:user) }
   end
 
   describe "#video_in_queue?" do
