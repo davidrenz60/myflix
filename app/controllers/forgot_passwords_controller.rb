@@ -3,7 +3,7 @@ class ForgotPasswordsController < ApplicationController
     user = User.find_by(email: params[:email])
 
     if user
-      AppMailer.send_forgot_password(user).deliver
+      ForgotPasswordMailer.perform_async(user.id)
       redirect_to forgot_password_confirmation_path
     else
       flash[:danger] = params[:email].blank? ? "Email cannot be blank." : "Email address not found."

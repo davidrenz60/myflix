@@ -15,7 +15,7 @@ class UsersController < ApplicationController
 
     if @user.save
       handle_invitations
-      AppMailer.send_welcome_email(@user).deliver
+      UserMailer.perform_async(@user.id)
       redirect_to sign_in_path
     else
       render :new

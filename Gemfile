@@ -13,6 +13,7 @@ gem 'jquery-rails'
 gem 'pg'
 gem 'eventmachine', '1.0.4'
 gem 'json', '1.8.6'
+gem 'sidekiq', '< 5'
 
 group :development do
   gem 'thin'
