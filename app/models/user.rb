@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  include Tokenable
+
   has_secure_password validations: false
   validates_presence_of :email, :password, :full_name
   validates_uniqueness_of :email
@@ -22,19 +24,15 @@ class User < ActiveRecord::Base
     queue_items.map(&:video).include?(video)
   end
 
+  def follow(another_user)
+    following_relationships.create(leader: another_user) if can_follow?(another_user)
+  end
+
   def follows?(other_user)
     leaders.include?(other_user)
   end
 
   def can_follow?(another_user)
     !(self == another_user || self.follows?(another_user))
-  end
-
-  def generate_token
-    update_column(:token, SecureRandom.urlsafe_base64)
-  end
-
-  def clear_token
-    update_column(:token, nil)
   end
 end

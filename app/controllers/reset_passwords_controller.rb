@@ -10,20 +10,14 @@ class ResetPasswordsController < ApplicationController
   end
 
   def create
-    token = params[:token]
     user = User.find_by(token: params[:token])
 
-    if user && token
+    if user
       user.password = params[:password]
-
-      if user.save
-        user.clear_token
-        flash[:success] = "Password changed. Please log in."
-        redirect_to sign_in_path
-      else
-        flash[:danger] = "There was a problem updating your password."
-        redirect_to reset_password_path(user.token)
-      end
+      user.generate_token
+      user.save
+      flash[:success] = "Password changed. Please log in."
+      redirect_to sign_in_path
     else
       redirect_to invalid_token_path
     end

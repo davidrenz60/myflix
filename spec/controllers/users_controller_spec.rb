@@ -14,6 +14,30 @@ describe UsersController do
     end
   end
 
+  describe "GET new_with_invitation" do
+    let(:invitation) { Fabricate(:invitation) }
+
+    it "renders the new template" do
+      get :new_with_invitation, token: invitation.token
+      expect(response).to render_template(:new)
+    end
+
+    it "sets @user with recipient's email address" do
+      get :new_with_invitation, token: invitation.token
+      expect(assigns(:user).email).to eq(invitation.recipient_email)
+    end
+
+    it "sets @invitation_token" do
+      get :new_with_invitation, token: invitation.token
+      expect(assigns(:invitation_token)).to eq(invitation.token)
+    end
+
+    it "redirects to the invalid token page if token is expired" do
+      get :new_with_invitation, token: "1234"
+      expect(response).to redirect_to invalid_token_path
+    end
+  end
+
   describe "GET show" do
     context "with authenticated user" do
       let(:user) { Fabricate(:user) }
@@ -32,16 +56,39 @@ describe UsersController do
 
   describe "POST create" do
     context "with valid input" do
-      before do
-        post :create, user: Fabricate.attributes_for(:user)
-      end
+      after { ActionMailer::Base.deliveries.clear }
 
       it "creates a new user" do
+        post :create, user: Fabricate.attributes_for(:user)
         expect(User.count).to eq(1)
       end
 
       it "redirects to the sign in page" do
+        post :create, user: Fabricate.attributes_for(:user)
         expect(response).to redirect_to sign_in_path
+      end
+
+      context "with invitation" do
+        let(:alice) { Fabricate(:user) }
+        let(:invitation) { Fabricate(:invitation, inviter: alice) }
+
+        before do
+          post :create, user: { email: "jon@test.com", password: "password", full_name: "Jon Doe" }, invitation_token: invitation.token
+        end
+
+        it "makes the new user follow the inviter" do
+          jon = User.find_by(email: "jon@test.com")
+          expect(jon.follows?(alice)).to eq(true)
+        end
+
+        it "makes the inviter follow the new user" do
+          jon = User.find_by(email: "jon@test.com")
+          expect(alice.follows?(jon)).to eq(true)
+        end
+
+        it "expires the invitation token" do
+          expect(Invitation.first.token).to be_nil
+        end
       end
     end
 

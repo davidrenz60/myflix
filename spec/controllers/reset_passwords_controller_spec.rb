@@ -23,9 +23,10 @@ describe ResetPasswordsController do
   describe "POST create" do
     context "with a valid token" do
       context "with valid password" do
-        let(:alice) { Fabricate(:user, password: "old_password", token: "1234") }
+        let(:alice) { Fabricate(:user, password: "old_password") }
 
         before do
+          alice.update_column(:token, "1234")
           post :create, token: alice.token, password: "new_password"
         end
 
@@ -33,8 +34,8 @@ describe ResetPasswordsController do
           expect(alice.reload.authenticate("new_password")).to eq(alice)
         end
 
-        it "clears the user's token" do
-          expect(alice.reload.token).to be_nil
+        it "regenerates the user's token" do
+          expect(alice.reload.token).not_to eq("1234")
         end
 
         it "sets a flash message" do
@@ -45,30 +46,6 @@ describe ResetPasswordsController do
           expect(response).to redirect_to sign_in_path
         end
       end
-
-      context "with an invalid password" do
-        let(:alice) { Fabricate(:user, password: "old_password", token: "1234") }
-
-        before do
-          post :create, token: alice.token, password: ""
-        end
-
-        it "does not update the user's password" do
-          expect(alice.reload.authenticate("old_password")).to eq(alice)
-        end
-
-        it "does not update the user's token" do
-          expect(alice.reload.token).to eq(alice.token)
-        end
-
-        it "sets a flash message" do
-          expect(flash[:danger]).to eq("There was a problem updating your password.")
-        end
-
-        it "redirects to the reset password page" do
-          expect(response).to redirect_to reset_password_path(alice.token)
-        end
-      end
     end
 
     context "with an invalid token" do
@@ -76,11 +53,6 @@ describe ResetPasswordsController do
 
       it "redirects to the invalid token path with a different token" do
         post :create, token: "abcd", password: "new_password"
-        expect(response).to redirect_to invalid_token_path
-      end
-
-      it "redirects to the invalid token path with a nil token" do
-        post :create, token: nil, password: "new_password"
         expect(response).to redirect_to invalid_token_path
       end
     end

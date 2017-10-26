@@ -13,13 +13,8 @@ describe User do
   it { should have_many(:leaders).through(:following_relationships) }
   it { should have_many(:following_relationships).class_name("Relationship").with_foreign_key("follower_id") }
 
-  describe "#generate_token" do
-    let(:alice) { Fabricate(:user) }
-
-    it "sets a token for the user" do
-      alice.generate_token
-      expect(alice.reload.token).to be_present
-    end
+  it_behaves_like "tokenable" do
+    let(:model) { Fabricate(:user) }
   end
 
   describe "#video_in_queue?" do
@@ -47,6 +42,21 @@ describe User do
 
     it "should return false if the user does not follow the other user" do
       expect(alice.follows?(bob)).to eq(false)
+    end
+  end
+
+  describe "#follow" do
+    let(:alice) { Fabricate(:user) }
+    let(:bob) { Fabricate(:user) }
+
+    it "follows another user" do
+      alice.follow(bob)
+      expect(alice.follows?(bob)).to eq(true)
+    end
+
+    it "does not let the user follow oneself" do
+      alice.follow(alice)
+      expect(alice.follows?(alice)).to eq(false)
     end
   end
 end
