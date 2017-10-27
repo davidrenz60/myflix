@@ -1,2 +1,2 @@
 web: bundle exec unicorn -p $PORT -c ./config/unicorn.rb
-worker: sidekiq c -10
+worker: bundle exec sidekiq c -10
