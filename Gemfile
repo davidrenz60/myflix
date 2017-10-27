@@ -5,12 +5,12 @@ gem 'bcrypt-ruby'
 gem 'bootstrap-sass', '3.1.1.1'
 gem 'bootstrap_form'
 gem 'coffee-rails'
-gem 'rails', '4.1.1'
+gem 'rails', '4.1.9'
 gem 'haml-rails'
 gem 'sass-rails'
 gem 'uglifier'
 gem 'jquery-rails'
-gem 'pg'
+gem 'pg', '0.20'
 gem 'eventmachine', '1.0.4'
 gem 'json', '1.8.6'
 gem 'sidekiq', '< 5'
@@ -26,7 +26,7 @@ end
 group :development, :test do
   gem 'pry'
   gem 'pry-nav'
-  gem 'rspec-rails', '2.99'
+  gem 'rspec-rails', '3.5'
 end
 
 group :test do
