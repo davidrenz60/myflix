@@ -15,6 +15,7 @@ gem 'eventmachine', '1.0.4'
 gem 'json', '1.8.6'
 gem 'sidekiq', '< 5'
 gem 'unicorn'
+gem 'sentry-raven'
 
 group :development do
   gem 'thin'
