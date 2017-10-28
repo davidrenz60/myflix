@@ -17,7 +17,3 @@ module Myflix
     end
   end
 end
-
-Raven.configure do |config|
-  config.dsn = 'https://b0baf23d74394aa5ae17056feec304ab:12b66e689b664791aa0ead95c38aad98@sentry.io/236650'
-end
