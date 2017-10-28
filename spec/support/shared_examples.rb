@@ -4,6 +4,12 @@ shared_examples "require sign in" do
     action
     expect(response).to redirect_to sign_in_path
   end
+
+  it "sets a flash message" do
+    clear_current_user
+    action
+    expect(flash[:danger]).not_to be_nil
+  end
 end
 
 shared_examples "tokenable" do
