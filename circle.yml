@@ -1,0 +1,19 @@
+machine:
+  ruby:
+    version: 2.2.8
+deployment:
+  production:
+    branch: master
+    commands:
+      - heroku maintenance:on --app drenz-myflix
+      - heroku pg:backups capture --app drenz-myflix
+      - git push git@heroku.com:drenz-myflix.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app drenz-myflix
+      - heroku maintenance:off --app drenz-myflix
+  staging:
+    branch: staging
+    commands:
+      - heroku maintenance:on --app staging-drenz-myflix
+      - git push git@heroku.com:staging-drenz-myflix.git $CIRCLE_SHA1:refs/heads/master
+      - heroku run rake db:migrate --app staging-drenz-myflix
+      - heroku maintenance:off --app staging-drenz-myflix
