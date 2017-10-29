@@ -24,7 +24,7 @@ comedy = Category.create(name: "Comedy")
 scifi = Category.create(name: "Sci Fi")
 drama = Category.create(name: "Drama")
 
-mr_robot = Video.create(title: "Mr. Robot", description: mr_robot_desc, small_cover_url: small_cover_url, large_cover_url: "/tmp/mr_robot_large.jpg", category: scifi)
+mr_robot = Video.create(title: "Mr. Robot", description: mr_robot_desc, small_cover_url: small_cover_url, large_cover_url: large_cover_url, category: scifi)
 westworld = Video.create(title: "Westworld", description: westworld_desc, small_cover_url: small_cover_url, large_cover_url: large_cover_url, category: scifi)
 
 Video.create(title: "House of Cards", description: house_of_cards_desc, small_cover_url: small_cover_url, large_cover_url: large_cover_url, category: drama)
