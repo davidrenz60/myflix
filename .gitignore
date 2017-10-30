@@ -17,4 +17,4 @@
 # Ignore the database.yml file
 config/database.yml
 
-/uploads/*
+/uploads/
