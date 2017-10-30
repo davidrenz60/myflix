@@ -16,6 +16,9 @@ gem 'json', '1.8.6'
 gem 'sidekiq', '< 5'
 gem 'unicorn'
 gem 'sentry-raven'
+gem 'carrierwave'
+gem 'mini_magick'
+
 
 group :development do
   gem 'thin'
@@ -42,6 +45,7 @@ group :test do
 end
 
 group :production, :staging do
+  gem 'carrierwave-aws'
   gem 'rails_12factor'
 end
 

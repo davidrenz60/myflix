@@ -17,23 +17,24 @@ south_park_desc = "Follows the misadventures of four irreverent grade-schoolers 
 
 lorem = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec lectus odio, vulputate et scelerisque in, lacinia quis sem. Donec tempor dictum ipsum, a rhoncus neque. Nulla facilisi. Integer euismod nunc ut quam fermentum, sit amet cursus erat dictum. Integer eget nulla nisi. Fusce non scelerisque felis, sed gravida neque. Mauris arcu odio, luctus eget augue ut, imperdiet sollicitudin velit. Phasellus ante enim, interdum et turpis quis, interdum accumsan erat. Cras viverra lobortis vehicula. Integer justo ipsum, ultrices quis malesuada nec, pulvinar sed leo. Aenean euismod nisl urna, quis eleifend metus ultrices sodales. Duis at nunc suscipit, condimentum est at, imperdiet dolor."
 
+
 comedy = Category.create(name: "Comedy")
 scifi = Category.create(name: "Sci Fi")
 drama = Category.create(name: "Drama")
 
-mr_robot = Video.create(title: "Mr. Robot", description: mr_robot_desc, small_cover_url: "/tmp/mr_robot.jpg", large_cover_url: "/tmp/mr_robot_large.jpg", category: scifi)
-westworld = Video.create(title: "Westworld", description: westworld_desc, small_cover_url: "/tmp/westworld.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: scifi)
+mr_robot = Video.create(title: "Mr. Robot", description: mr_robot_desc, category: scifi)
+westworld = Video.create(title: "Westworld", description: westworld_desc, category: scifi)
 
-Video.create(title: "House of Cards", description: house_of_cards_desc, small_cover_url: "/tmp/house_of_cards.jpg", large_cover_url: "/tmp/house_of_cards_large.jpg", category: drama)
-Video.create(title: "Breaking Bad", description: breaking_bad_desc, small_cover_url: "/tmp/breaking_bad.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: drama)
+Video.create(title: "House of Cards", description: house_of_cards_desc, category: drama)
+Video.create(title: "Breaking Bad", description: breaking_bad_desc, category: drama)
 
-Video.create(title: "Better Call Saul", description: better_call_saul_desc, small_cover_url: "/tmp/better_call_saul.jpg", large_cover_url: "/tmp/better_call_saul_large.jpg", category: comedy)
-Video.create(title: "Better Call Saul", description: better_call_saul_desc, small_cover_url: "/tmp/better_call_saul.jpg", large_cover_url: "/tmp/better_call_saul_large.jpg", category: comedy)
-Video.create(title: "Family Guy", description: family_guy_desc, small_cover_url: "/tmp/family_guy.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
-Video.create(title: "Family Guy", description: family_guy_desc, small_cover_url: "/tmp/family_guy.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
-Video.create(title: "Monk", description: monk_desc, small_cover_url: "/tmp/monk.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
-Video.create(title: "Futurama", description: futurama_desc, small_cover_url: "/tmp/futurama.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
-Video.create(title: "South Park", description: south_park_desc, small_cover_url: "/tmp/south_park.jpg", large_cover_url: "http://dummyimage.com/665x375/000000/00a2ff", category: comedy)
+Video.create(title: "Better Call Saul", description: better_call_saul_desc, category: comedy)
+Video.create(title: "Better Call Saul", description: better_call_saul_desc, category: comedy)
+Video.create(title: "Family Guy", description: family_guy_desc, category: comedy)
+Video.create(title: "Family Guy", description: family_guy_desc, category: comedy)
+Video.create(title: "Monk", description: monk_desc, category: comedy)
+Video.create(title: "Futurama", description: futurama_desc, category: comedy)
+Video.create(title: "South Park", description: south_park_desc, category: comedy)
 
 dave = User.create(email: "dave@test.com", password: "dave", full_name: "Dave Renz", admin: true)
 joe = User.create(email: "joe@test.com", password: "joe", full_name: "Joe Smith")
@@ -53,4 +54,5 @@ QueueItem.create(user: dave, video: mr_robot, position: 1)
 QueueItem.create(user: dave, video: westworld, position: 2)
 QueueItem.create(user: alice, video: westworld, position: 1)
 QueueItem.create(user: alice, video: mr_robot, position: 2)
+
 
