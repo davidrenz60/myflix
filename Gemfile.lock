@@ -225,6 +225,8 @@ GEM
       actionpack (>= 3.0)
       activesupport (>= 3.0)
       sprockets (>= 2.8, < 4.0)
+    stripe (3.7.0)
+      faraday (~> 0.10)
     temple (0.8.0)
     thin (1.7.2)
       daemons (~> 1.0, >= 1.0.9)
@@ -279,6 +281,7 @@ DEPENDENCIES
   sentry-raven
   shoulda-matchers (= 2.7.0)
   sidekiq (< 5)
+  stripe
   thin
   uglifier
   unicorn

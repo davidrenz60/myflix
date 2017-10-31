@@ -14,6 +14,14 @@ class UsersController < ApplicationController
     @user = User.new(user_params)
 
     if @user.save
+      Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+      Stripe::Charge.create(
+        amount: 999,
+        currency: "usd",
+        description: "sign up charge for #{@user.full_name}",
+        source: params[:stripeToken]
+      )
+
       handle_invitations
       UserMailer.perform_async(@user.id)
       redirect_to sign_in_path
