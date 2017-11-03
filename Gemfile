@@ -18,7 +18,8 @@ gem 'unicorn'
 gem 'sentry-raven'
 gem 'carrierwave'
 gem 'mini_magick'
-
+gem 'figaro'
+gem 'stripe'
 
 group :development do
   gem 'thin'
@@ -41,7 +42,9 @@ group :test do
   gem 'faker'
   gem 'launchy'
   gem 'shoulda-matchers', '2.7.0'
-  gem 'vcr', '2.9.3'
+  gem 'vcr', '3.0.0'
+  gem 'webmock'
+  gem 'selenium-webdriver'
 end
 
 group :production, :staging do
