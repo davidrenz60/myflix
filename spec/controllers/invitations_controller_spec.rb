@@ -23,8 +23,6 @@ describe InvitationsController do
           post :create, invitation: { recipient_name: "Bob Smith", recipient_email: "bob@test.com", message: "Sign up!" }
         end
 
-        after { ActionMailer::Base.deliveries.clear }
-
         it "creates a new invitation" do
           expect(Invitation.count).to eq(1)
         end

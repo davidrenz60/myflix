@@ -6,7 +6,6 @@ describe ForgotPasswordsController do
 
     context "with valid email" do
       before { post :create, email: user.email }
-      after { ActionMailer::Base.deliveries.clear }
 
       it "sends an email to the proper email address" do
         expect(ActionMailer::Base.deliveries.last.to).to eq([user.email])
