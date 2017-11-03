@@ -13,20 +13,21 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
 
-    if @user.save
+    if @user.valid?
       charge = StripeWrapper::Charge.create(
         amount: 999,
         description: "sign up charge for #{@user.full_name}",
-        source: params[:stripeToken]
+        source: params[:stripe_token]
       )
 
       if charge.successful?
+        @user.save
         handle_invitations
         UserMailer.perform_async(@user.id)
         redirect_to sign_in_path
       else
         flash[:danger] = charge.error_message
-        redirect_to register_path
+        render :new
       end
     else
       render :new
