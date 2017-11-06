@@ -5,7 +5,7 @@ http_interactions:
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=999&description=sign+up+charge+for+Bob+Jones&source=tok_1BKSpGACRY9yqAzKMSvp2Cau&currency=usd
+      string: amount=999&description=sign+up+charge+for+Joe+Smith&source=tok_1BKcEDACRY9yqAzKLpY8ntqx&currency=usd
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.7.0
@@ -15,8 +15,8 @@ http_interactions:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"3.7.0","lang":"ruby","lang_version":"2.2.8 p477 (2017-09-14)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
-        DAVIDs-MacBook-Air.local 17.0.0 Darwin Kernel Version 17.0.0: Thu Aug 24 21:48:19
-        PDT 2017; root:xnu-4570.1.46~2/RELEASE_X86_64 x86_64","hostname":"DAVIDs-MacBook-Air.local"}'
+        DAVIDs-Air 17.0.0 Darwin Kernel Version 17.0.0: Thu Aug 24 21:48:19 PDT 2017;
+        root:xnu-4570.1.46~2/RELEASE_X86_64 x86_64","hostname":"DAVIDs-Air"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -29,7 +29,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sat, 04 Nov 2017 14:40:46 GMT
+      - Sun, 05 Nov 2017 00:43:10 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_My21rpuDAKHHHx
+      - req_AlxhNTaLRN8TnU
       Stripe-Version:
       - '2017-08-15'
       Strict-Transport-Security:
@@ -58,18 +58,18 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_1BKSpGACRY9yqAzKmqf6JAx2",
+          "id": "ch_1BKcEDACRY9yqAzKXoIfDDZl",
           "object": "charge",
           "amount": 999,
           "amount_refunded": 0,
           "application": null,
           "application_fee": null,
-          "balance_transaction": "txn_1BKSpGACRY9yqAzKryuoGnLE",
+          "balance_transaction": "txn_1BKcEDACRY9yqAzKLZwhzifc",
           "captured": true,
-          "created": 1509806446,
+          "created": 1509842589,
           "currency": "usd",
           "customer": null,
-          "description": "sign up charge for Bob Jones",
+          "description": "sign up charge for Joe Smith",
           "destination": null,
           "dispute": null,
           "failure_code": null,
@@ -96,12 +96,12 @@ http_interactions:
             "data": [],
             "has_more": false,
             "total_count": 0,
-            "url": "/v1/charges/ch_1BKSpGACRY9yqAzKmqf6JAx2/refunds"
+            "url": "/v1/charges/ch_1BKcEDACRY9yqAzKXoIfDDZl/refunds"
           },
           "review": null,
           "shipping": null,
           "source": {
-            "id": "card_1BKSpFACRY9yqAzKN5hrV5G6",
+            "id": "card_1BKcEDACRY9yqAzKqRyVKEyr",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -131,5 +131,5 @@ http_interactions:
           "transfer_group": null
         }
     http_version: 
-  recorded_at: Sat, 04 Nov 2017 14:40:46 GMT
+  recorded_at: Sun, 05 Nov 2017 00:43:10 GMT
 recorded_with: VCR 3.0.0
