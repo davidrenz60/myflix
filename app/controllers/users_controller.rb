@@ -17,11 +17,12 @@ class UsersController < ApplicationController
       charge = StripeWrapper::Charge.create(
         amount: 999,
         description: "sign up charge for #{@user.full_name}",
-        source: params[:stripe_token]
+        source: params[:stripeToken]
       )
 
       if charge.successful?
         @user.save
+        flash[:success] = "You are registered with MyFlix! Please sign in."
         handle_invitations
         UserMailer.perform_async(@user.id)
         redirect_to sign_in_path
