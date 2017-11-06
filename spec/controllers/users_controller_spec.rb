@@ -71,6 +71,10 @@ describe UsersController do
         expect(response).to redirect_to sign_in_path
       end
 
+      it "sets a flash message" do
+        expect(flash[:success]).not_to be_nil
+      end
+
       context "with invitation" do
         let(:alice) { Fabricate(:user) }
         let(:invitation) { Fabricate(:invitation, inviter: alice) }

@@ -1,9 +1,9 @@
 require "spec_helper"
 
-feature "user invites friend" do
+feature "user invites friend", js: true, vcr: true do
   let(:alice) { Fabricate(:user) }
 
-  scenario "user invites friend and successfully accepts invitation", :vcr do
+  scenario "user invites friend and successfully accepts invitation" do
     sign_in(alice)
     invite_a_friend
 
@@ -30,11 +30,21 @@ feature "user invites friend" do
     current_email.click_link("Accept this invitation")
     fill_in "Password", with: "password"
     fill_in "Full Name", with: "Bob Jones"
-    fill_in_credit_card_info
+    enter_credit_card_info
     click_button "Sign Up"
   end
 
+  def enter_credit_card_info
+    within_frame "__privateStripeFrame3" do
+      fill_in 'cardnumber', with: '4242424242424242'
+      fill_in 'exp-date', with: '0119'
+      fill_in 'cvc', with: '123'
+      fill_in 'postal', with: '12345'
+    end
+  end
+
   def friend_signs_in
+    sleep(1)
     fill_in "Email Address", with: "bob@test.com"
     fill_in "Password", with: "password"
     click_button "Sign in"
@@ -50,9 +60,5 @@ feature "user invites friend" do
     sign_in(user)
     click_link "People"
     expect(page).to have_content("Bob")
-  end
-
-  def fill_in_credit_card_info
-    find('#stripe_token').set("tok_visa")
   end
 end

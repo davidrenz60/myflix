@@ -37,12 +37,12 @@ end
 group :test do
   gem 'capybara'
   gem 'capybara-email'
-  gem 'database_cleaner', '1.4.1'
+  gem 'database_cleaner'
   gem 'fabrication'
   gem 'faker'
   gem 'launchy'
   gem 'shoulda-matchers', '2.7.0'
-  gem 'vcr', '3.0.0'
+  gem 'vcr', '3.0.1'
   gem 'webmock'
   gem 'selenium-webdriver'
 end
