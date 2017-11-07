@@ -30,21 +30,21 @@ feature "User registers", js: true, vcr: true do
     enter_invalid_user_info
     enter_valid_credit_card
     click_button "Sign Up"
-    expect(page).to have_content("Please fix the errors below.")
+    expect(page).to have_content("Invalid user information. Please fix the following errors.")
   end
 
   scenario "with invalid user and declined credit card" do
     enter_invalid_user_info
     enter_declined_credit_card
     click_button "Sign Up"
-    expect(page).to have_content("Please fix the errors below.")
+    expect(page).to have_content("Invalid user information. Please fix the following errors.")
   end
 
   scenario "with invalid user and expired credit card" do
     enter_invalid_user_info
     enter_expired_credit_card
     click_button "Sign Up"
-    expect(page).to have_content("Please fix the errors below.")
+    expect(page).to have_content("Invalid user information. Please fix the following errors.")
   end
 
   def enter_valid_user_info

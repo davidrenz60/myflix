@@ -10,7 +10,6 @@
       = bootstrap_form_for(@user, layout: :horizontal, control_col: "col-sm-6", html: { id: "payment-form" }) do |f|
         %header
           %h1 Register
-          = f.alert_message "Please fix the errors below.", error_summary: false
         %fieldset
           = f.email_field :email, value: @user.email, label: "Email Address"
           = f.password_field :password
