@@ -29,11 +29,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 02 Nov 2017 01:59:44 GMT
+      - Fri, 10 Nov 2017 18:39:50 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '782'
+      - '781'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,19 +49,19 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_rKxaIK6zCveqWE
+      - req_9uhx49I0jtLEsn
       Stripe-Version:
       - '2017-08-15'
       Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains
+      - max-age=31556926; includeSubDomains; preload
     body:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_1BJXzgACRY9yqAzKDWMh44qC",
+          "id": "tok_1BMhPuACRY9yqAzK0vfOBFjJ",
           "object": "token",
           "card": {
-            "id": "card_1BJXzfACRY9yqAzKP4FN1Cgo",
+            "id": "card_1BMhPuACRY9yqAzKcfLtjiXx",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -84,20 +84,20 @@ http_interactions:
             "name": null,
             "tokenization_method": null
           },
-          "client_ip": "67.160.218.184",
-          "created": 1509587984,
+          "client_ip": "172.56.40.181",
+          "created": 1510339190,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 02 Nov 2017 02:00:02 GMT
+  recorded_at: Fri, 10 Nov 2017 18:39:50 GMT
 - request:
     method: post
     uri: https://api.stripe.com/v1/charges
     body:
       encoding: UTF-8
-      string: amount=999&source=tok_1BJXzgACRY9yqAzKDWMh44qC&currency=usd
+      string: amount=999&source=tok_1BMhPuACRY9yqAzK0vfOBFjJ&currency=usd
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.7.0
@@ -121,7 +121,7 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 02 Nov 2017 01:59:44 GMT
+      - Fri, 10 Nov 2017 18:39:51 GMT
       Content-Type:
       - application/json
       Content-Length:
@@ -141,7 +141,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_u4o4vCCYsE8a3H
+      - req_mNYOg3P3LRXv1j
       Stripe-Version:
       - '2017-08-15'
     body:
@@ -153,9 +153,9 @@ http_interactions:
             "type": "card_error",
             "code": "card_declined",
             "decline_code": "generic_decline",
-            "charge": "ch_1BJXzgACRY9yqAzKjYByXc79"
+            "charge": "ch_1BMhPvACRY9yqAzKr7P3Zxcm"
           }
         }
     http_version: 
-  recorded_at: Thu, 02 Nov 2017 02:00:02 GMT
-recorded_with: VCR 3.0.0
+  recorded_at: Fri, 10 Nov 2017 18:39:51 GMT
+recorded_with: VCR 3.0.1

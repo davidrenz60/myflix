@@ -9,6 +9,7 @@ feature "User registers", js: true, vcr: true do
     enter_valid_user_info
     enter_valid_credit_card
     click_button "Sign Up"
+    sleep(1)
     expect(page).to have_content("You are registered with MyFlix! Please sign in.")
   end
 
@@ -16,6 +17,7 @@ feature "User registers", js: true, vcr: true do
     enter_valid_user_info
     enter_declined_credit_card
     click_button "Sign Up"
+    sleep(1)
     expect(page).to have_content("Your card was declined.")
   end
 
@@ -23,6 +25,7 @@ feature "User registers", js: true, vcr: true do
     enter_valid_user_info
     enter_expired_credit_card
     click_button "Sign Up"
+    sleep(1)
     expect(page).to have_content("Your card has expired.")
   end
 

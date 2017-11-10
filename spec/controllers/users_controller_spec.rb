@@ -59,7 +59,7 @@ describe UsersController do
       let(:registration) { double("registration", successful?: true) }
 
       before do
-        expect_any_instance_of(UserRegistration).to receive(:register).and_return(registration)
+        expect_any_instance_of(UserRegistration).to receive(:create).and_return(registration)
         post :create, user: Fabricate.attributes_for(:user)
       end
 
@@ -76,7 +76,7 @@ describe UsersController do
       let(:registration) { double("registration", successful?: false, error_message: "There were errors.") }
 
       before do
-        expect_any_instance_of(UserRegistration).to receive(:register).and_return(registration)
+        expect_any_instance_of(UserRegistration).to receive(:create).and_return(registration)
         post :create, user: { email: "joe@test.com", password: "password" }
       end
 

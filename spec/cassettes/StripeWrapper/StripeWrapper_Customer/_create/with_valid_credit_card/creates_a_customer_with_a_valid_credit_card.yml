@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.stripe.com/v1/customers
+    uri: https://api.stripe.com/v1/tokens
     body:
       encoding: UTF-8
-      string: description=sign+up+charge+for+myflix&source=tok_1BMl3XACRY9yqAzKPD78DTAJ&email=bob%40test.com&plan=base
+      string: card[number]=4242424242424242&card[exp_month]=10&card[exp_year]=2018&card[cvc]=314
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.7.0
@@ -29,11 +29,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Fri, 10 Nov 2017 22:33:01 GMT
+      - Fri, 10 Nov 2017 18:39:59 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '3390'
+      - '781'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_rCDzJKYPO1Wbzq
+      - req_E2t3G0xPXYk0rU
       Stripe-Version:
       - '2017-08-15'
       Strict-Transport-Security:
@@ -58,16 +58,108 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "cus_BkFY5aknCi3d7q",
+          "id": "tok_1BMhQ3ACRY9yqAzKNF1i5T7a",
+          "object": "token",
+          "card": {
+            "id": "card_1BMhQ3ACRY9yqAzKl22vYlJe",
+            "object": "card",
+            "address_city": null,
+            "address_country": null,
+            "address_line1": null,
+            "address_line1_check": null,
+            "address_line2": null,
+            "address_state": null,
+            "address_zip": null,
+            "address_zip_check": null,
+            "brand": "Visa",
+            "country": "US",
+            "cvc_check": "unchecked",
+            "dynamic_last4": null,
+            "exp_month": 10,
+            "exp_year": 2018,
+            "fingerprint": "q2TyZusZTFXy5XkY",
+            "funding": "credit",
+            "last4": "4242",
+            "metadata": {},
+            "name": null,
+            "tokenization_method": null
+          },
+          "client_ip": "172.56.40.181",
+          "created": 1510339199,
+          "livemode": false,
+          "type": "card",
+          "used": false
+        }
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 18:39:59 GMT
+- request:
+    method: post
+    uri: https://api.stripe.com/v1/customers
+    body:
+      encoding: UTF-8
+      string: description=new+customer&source=tok_1BMhQ3ACRY9yqAzKNF1i5T7a&email=vena.mcclure%40abbott.net&plan=base
+    headers:
+      User-Agent:
+      - Stripe/v1 RubyBindings/3.7.0
+      Authorization:
+      - Bearer sk_test_mOcn0ESCsNyhdadkVcd8vFoU
+      Content-Type:
+      - application/x-www-form-urlencoded
+      X-Stripe-Client-User-Agent:
+      - '{"bindings_version":"3.7.0","lang":"ruby","lang_version":"2.2.8 p477 (2017-09-14)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
+        DAVIDs-MacBook-Air.local 17.0.0 Darwin Kernel Version 17.0.0: Thu Aug 24 21:48:19
+        PDT 2017; root:xnu-4570.1.46~2/RELEASE_X86_64 x86_64","hostname":"DAVIDs-MacBook-Air.local"}'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Server:
+      - nginx
+      Date:
+      - Fri, 10 Nov 2017 18:40:01 GMT
+      Content-Type:
+      - application/json
+      Content-Length:
+      - '3394'
+      Connection:
+      - keep-alive
+      Access-Control-Allow-Credentials:
+      - 'true'
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - "*"
+      Access-Control-Expose-Headers:
+      - X-Stripe-Privileged-Session-Required,stripe-manage-version,X-Stripe-External-Auth-Required
+      Access-Control-Max-Age:
+      - '300'
+      Cache-Control:
+      - no-cache, no-store
+      Request-Id:
+      - req_8RPEY2GIZEsjO3
+      Stripe-Version:
+      - '2017-08-15'
+      Strict-Transport-Security:
+      - max-age=31556926; includeSubDomains; preload
+    body:
+      encoding: UTF-8
+      string: |
+        {
+          "id": "cus_BkBnjFK85XjxHt",
           "object": "customer",
           "account_balance": 0,
-          "created": 1510353180,
+          "created": 1510339200,
           "currency": "usd",
-          "default_source": "card_1BMl3XACRY9yqAzKYRg5e74X",
+          "default_source": "card_1BMhQ3ACRY9yqAzKl22vYlJe",
           "delinquent": false,
-          "description": "sign up charge for myflix",
+          "description": "new customer",
           "discount": null,
-          "email": "bob@test.com",
+          "email": "vena.mcclure@abbott.net",
           "livemode": false,
           "metadata": {},
           "shipping": null,
@@ -75,7 +167,7 @@ http_interactions:
             "object": "list",
             "data": [
               {
-                "id": "card_1BMl3XACRY9yqAzKYRg5e74X",
+                "id": "card_1BMhQ3ACRY9yqAzKl22vYlJe",
                 "object": "card",
                 "address_city": null,
                 "address_country": null,
@@ -83,15 +175,15 @@ http_interactions:
                 "address_line1_check": null,
                 "address_line2": null,
                 "address_state": null,
-                "address_zip": "12345",
-                "address_zip_check": "pass",
+                "address_zip": null,
+                "address_zip_check": null,
                 "brand": "Visa",
                 "country": "US",
-                "customer": "cus_BkFY5aknCi3d7q",
+                "customer": "cus_BkBnjFK85XjxHt",
                 "cvc_check": "pass",
                 "dynamic_last4": null,
-                "exp_month": 1,
-                "exp_year": 2019,
+                "exp_month": 10,
+                "exp_year": 2018,
                 "fingerprint": "q2TyZusZTFXy5XkY",
                 "funding": "credit",
                 "last4": "4242",
@@ -102,31 +194,31 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_BkFY5aknCi3d7q/sources"
+            "url": "/v1/customers/cus_BkBnjFK85XjxHt/sources"
           },
           "subscriptions": {
             "object": "list",
             "data": [
               {
-                "id": "sub_BkFYhv8AoEaUhk",
+                "id": "sub_BkBnS3dzALHV3v",
                 "object": "subscription",
                 "application_fee_percent": null,
                 "billing": "charge_automatically",
                 "cancel_at_period_end": false,
                 "canceled_at": null,
-                "created": 1510353180,
-                "current_period_end": 1512945180,
-                "current_period_start": 1510353180,
-                "customer": "cus_BkFY5aknCi3d7q",
+                "created": 1510339200,
+                "current_period_end": 1512931200,
+                "current_period_start": 1510339200,
+                "customer": "cus_BkBnjFK85XjxHt",
                 "discount": null,
                 "ended_at": null,
                 "items": {
                   "object": "list",
                   "data": [
                     {
-                      "id": "si_BkFYq7L36SCMEy",
+                      "id": "si_1BMhQ4ACRY9yqAzKp38xuvpd",
                       "object": "subscription_item",
-                      "created": 1510353180,
+                      "created": 1510339201,
                       "metadata": {},
                       "plan": {
                         "id": "base",
@@ -147,7 +239,7 @@ http_interactions:
                   ],
                   "has_more": false,
                   "total_count": 1,
-                  "url": "/v1/subscription_items?subscription=sub_BkFYhv8AoEaUhk"
+                  "url": "/v1/subscription_items?subscription=sub_BkBnS3dzALHV3v"
                 },
                 "livemode": false,
                 "metadata": {},
@@ -166,7 +258,7 @@ http_interactions:
                   "trial_period_days": null
                 },
                 "quantity": 1,
-                "start": 1510353180,
+                "start": 1510339200,
                 "status": "active",
                 "tax_percent": null,
                 "trial_end": null,
@@ -175,9 +267,9 @@ http_interactions:
             ],
             "has_more": false,
             "total_count": 1,
-            "url": "/v1/customers/cus_BkFY5aknCi3d7q/subscriptions"
+            "url": "/v1/customers/cus_BkBnjFK85XjxHt/subscriptions"
           }
         }
     http_version: 
-  recorded_at: Fri, 10 Nov 2017 22:33:01 GMT
+  recorded_at: Fri, 10 Nov 2017 18:40:01 GMT
 recorded_with: VCR 3.0.1

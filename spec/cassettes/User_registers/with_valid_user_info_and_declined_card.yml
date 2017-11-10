@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: amount=999&description=sign+up+charge+for+Joe+Smith&source=tok_1BKcCOACRY9yqAzKZ1RAgxAV&currency=usd
+      string: description=sign+up+charge+for+myflix&source=tok_1BMkjKACRY9yqAzKlBI0MJFN&email=Joe%40test.com&plan=base
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.7.0
@@ -15,8 +15,8 @@ http_interactions:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"3.7.0","lang":"ruby","lang_version":"2.2.8 p477 (2017-09-14)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
-        DAVIDs-Air 17.0.0 Darwin Kernel Version 17.0.0: Thu Aug 24 21:48:19 PDT 2017;
-        root:xnu-4570.1.46~2/RELEASE_X86_64 x86_64","hostname":"DAVIDs-Air"}'
+        DAVIDs-MacBook-Air.local 17.0.0 Darwin Kernel Version 17.0.0: Thu Aug 24 21:48:19
+        PDT 2017; root:xnu-4570.1.46~2/RELEASE_X86_64 x86_64","hostname":"DAVIDs-MacBook-Air.local"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -29,11 +29,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 05 Nov 2017 00:41:17 GMT
+      - Fri, 10 Nov 2017 22:12:07 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '201'
+      - '173'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_vEDnEMQlz7tH2M
+      - req_kDuFDb0JfGpx2d
       Stripe-Version:
       - '2017-08-15'
     body:
@@ -59,11 +59,11 @@ http_interactions:
           "error": {
             "message": "Your card was declined.",
             "type": "card_error",
+            "param": "",
             "code": "card_declined",
-            "decline_code": "generic_decline",
-            "charge": "ch_1BKcCOACRY9yqAzKpCrlhsY8"
+            "decline_code": "generic_decline"
           }
         }
-    http_version:
-  recorded_at: Sun, 05 Nov 2017 00:41:17 GMT
-recorded_with: VCR 3.0.0
+    http_version: 
+  recorded_at: Fri, 10 Nov 2017 22:12:33 GMT
+recorded_with: VCR 3.0.1

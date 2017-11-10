@@ -29,11 +29,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 02 Nov 2017 01:59:43 GMT
+      - Fri, 10 Nov 2017 18:39:57 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '782'
+      - '781'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,19 +49,19 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_VhPXCHykMm19WW
+      - req_1fCYHo0y7SMFTy
       Stripe-Version:
       - '2017-08-15'
       Strict-Transport-Security:
-      - max-age=31556926; includeSubDomains
+      - max-age=31556926; includeSubDomains; preload
     body:
       encoding: UTF-8
       string: |
         {
-          "id": "tok_1BJXzeACRY9yqAzKMGkF7hgg",
+          "id": "tok_1BMhQ1ACRY9yqAzKVuH4RkNJ",
           "object": "token",
           "card": {
-            "id": "card_1BJXzeACRY9yqAzKESdV2nwm",
+            "id": "card_1BMhQ1ACRY9yqAzKTjjsRfdF",
             "object": "card",
             "address_city": null,
             "address_country": null,
@@ -84,20 +84,20 @@ http_interactions:
             "name": null,
             "tokenization_method": null
           },
-          "client_ip": "67.160.218.184",
-          "created": 1509587982,
+          "client_ip": "172.56.40.181",
+          "created": 1510339197,
           "livemode": false,
           "type": "card",
           "used": false
         }
     http_version: 
-  recorded_at: Thu, 02 Nov 2017 02:00:01 GMT
+  recorded_at: Fri, 10 Nov 2017 18:39:57 GMT
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: amount=999&source=tok_1BJXzeACRY9yqAzKMGkF7hgg&currency=usd
+      string: description=new+customer&source=tok_1BMhQ1ACRY9yqAzKVuH4RkNJ&email=lon%40hirthe.net&plan=base
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.7.0
@@ -121,11 +121,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Thu, 02 Nov 2017 01:59:43 GMT
+      - Fri, 10 Nov 2017 18:39:58 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '201'
+      - '173'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -141,7 +141,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_Vg6bPqks1XnLOE
+      - req_4DJLgmM1mWcuou
       Stripe-Version:
       - '2017-08-15'
     body:
@@ -151,11 +151,11 @@ http_interactions:
           "error": {
             "message": "Your card was declined.",
             "type": "card_error",
+            "param": "",
             "code": "card_declined",
-            "decline_code": "generic_decline",
-            "charge": "ch_1BJXzfACRY9yqAzK6dxgRIjG"
+            "decline_code": "generic_decline"
           }
         }
     http_version: 
-  recorded_at: Thu, 02 Nov 2017 02:00:01 GMT
-recorded_with: VCR 3.0.0
+  recorded_at: Fri, 10 Nov 2017 18:39:58 GMT
+recorded_with: VCR 3.0.1

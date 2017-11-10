@@ -30,4 +30,24 @@ module StripeWrapper
       response.message
     end
   end
+
+  class Customer < Charge
+    def self.create(options={})
+      begin
+        response = Stripe::Customer.create(
+          description: options[:description],
+          source: options[:source],
+          email: options[:user].email,
+          plan: "base"
+        )
+        new(response, :success)
+      rescue Stripe::CardError => e
+        new(e, :error)
+      end
+    end
+
+    def id
+      response.id
+    end
+  end
 end

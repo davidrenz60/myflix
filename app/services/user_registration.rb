@@ -5,15 +5,15 @@ class UserRegistration
     @user = user
   end
 
-  def register(stripe_token, invitation_token)
+  def create(stripe_token, invitation_token)
     if @user.valid?
-      charge = StripeWrapper::Charge.create(
-        amount: 999,
-        description: "sign up charge for #{@user.full_name}",
+      customer = StripeWrapper::Customer.create(
+        description: "sign up charge for myflix",
+        user: @user,
         source: stripe_token
       )
 
-      if charge.successful?
+      if customer.successful?
         @status = :success
         @user.save
         handle_invitations(invitation_token)
@@ -21,7 +21,7 @@ class UserRegistration
         self
       else
         @status = :error
-        @error_message = charge.error_message
+        @error_message = customer.error_message
         self
       end
     else

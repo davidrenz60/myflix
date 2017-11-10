@@ -12,7 +12,7 @@ class UsersController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    registration = UserRegistration.new(@user).register(params[:stripeToken], params[:invitation_token])
+    registration = UserRegistration.new(@user).create(params[:stripeToken], params[:invitation_token])
 
     if registration.successful?
       flash[:success] = "You are registered with MyFlix! Please sign in."

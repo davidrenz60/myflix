@@ -3,11 +3,11 @@ require "spec_helper"
 describe UserRegistration do
   describe "#register" do
     context "with valid information and no invitation" do
-      let(:charge) { double("charge", successful?: true) }
+      let(:customer) { double("customer", successful?: true) }
 
       before do
-        expect(StripeWrapper::Charge).to receive(:create).and_return(charge)
-        UserRegistration.new(Fabricate.build(:user, email: "joe@example.com", full_name: "Joe Smith")).register("stripe_token", nil)
+        expect(StripeWrapper::Customer).to receive(:create).and_return(customer)
+        UserRegistration.new(Fabricate.build(:user, email: "joe@example.com", full_name: "Joe Smith")).create("stripe_token", nil)
       end
 
       it "creates a new user" do
@@ -26,11 +26,11 @@ describe UserRegistration do
     context "with valid information and invitation" do
       let(:alice) { Fabricate(:user) }
       let(:invitation) { Fabricate(:invitation, inviter: alice, recipient_email: "joe@example.com") }
-      let(:charge) { double("charge", successful?: true) }
+      let(:customer) { double("customer", successful?: true) }
 
       before do
-        expect(StripeWrapper::Charge).to receive(:create).and_return(charge)
-        UserRegistration.new(Fabricate.build(:user, email: "joe@example.com", full_name: "Joe Smith")).register("stripe_token", invitation.token)
+        expect(StripeWrapper::Customer).to receive(:create).and_return(customer)
+        UserRegistration.new(Fabricate.build(:user, email: "joe@example.com", full_name: "Joe Smith")).create("stripe_token", invitation.token)
       end
 
       it "makes the new user follow the inviter" do
@@ -49,11 +49,11 @@ describe UserRegistration do
     end
 
     context "with valid user info and invalid credit card" do
-      let(:charge) { double("charge", successful?: false, error_message: "Error message") }
+      let(:customer) { double("customer", successful?: false, error_message: "Error message") }
 
       before do
-        expect(StripeWrapper::Charge).to receive(:create).and_return(charge)
-        UserRegistration.new(Fabricate.build(:user)).register("stripe_token", nil)
+        expect(StripeWrapper::Customer).to receive(:create).and_return(customer)
+        UserRegistration.new(Fabricate.build(:user)).create("stripe_token", nil)
       end
 
       it "does not create a new user" do
@@ -67,15 +67,15 @@ describe UserRegistration do
 
     context "with invalid user and valid credit card" do
       before do
-        UserRegistration.new(User.new(email: "joe@example.com")).register("stripe_token", nil)
+        UserRegistration.new(User.new(email: "joe@example.com")).create("stripe_token", nil)
       end
 
       it "does not create a new user" do
           expect(User.count).to eq(0)
         end
 
-      it "does not charge the credit card" do
-        expect(StripeWrapper::Charge).not_to receive(:create)
+      it "does not create a customer" do
+        expect(StripeWrapper::Customer).not_to receive(:create)
       end
 
       it "does not send an email" do
