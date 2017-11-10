@@ -44,30 +44,30 @@ describe Video do
     end
   end
 
-  describe '#average_rating' do
+  describe '#rating' do
     let(:video) { Fabricate(:video) }
 
     it "returns nil when there are no reviews" do
-      expect(video.average_rating).to be_nil
+      expect(video.rating).to be_nil
     end
 
     it "returns the average rating of the videos to one decimal point" do
       Fabricate(:review, video: video, rating: 4)
       Fabricate(:review, video: video, rating: 2)
-      expect(video.average_rating).to eq(3.0)
+      expect(video.rating).to eq(3.0)
     end
 
     it "rounds the ratings to one decimal point" do
       Fabricate(:review, video: video, rating: 5)
       Fabricate(:review, video: video, rating: 2)
       Fabricate(:review, video: video, rating: 1)
-      expect(video.average_rating).to eq(2.7)
+      expect(video.rating).to eq(2.7)
     end
 
     it 'returns nil when there is a video with a nil rating' do
       review = Fabricate(:review, video: video, rating: 5)
       review.update_attribute(:rating, nil)
-      expect(video.average_rating).to be_nil
+      expect(video.rating).to be_nil
     end
   end
 end

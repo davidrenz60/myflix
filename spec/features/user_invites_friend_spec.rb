@@ -51,6 +51,7 @@ feature "user invites friend", js: true, vcr: true do
   end
 
   def friend_should_follow(user)
+    sleep(1)
     click_link "People"
     expect(page).to have_content(user.full_name)
     sign_out

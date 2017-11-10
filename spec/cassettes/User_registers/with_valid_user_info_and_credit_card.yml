@@ -2,10 +2,10 @@
 http_interactions:
 - request:
     method: post
-    uri: https://api.stripe.com/v1/charges
+    uri: https://api.stripe.com/v1/customers
     body:
       encoding: UTF-8
-      string: amount=999&description=sign+up+charge+for+Joe+Smith&source=tok_1BKcEDACRY9yqAzKLpY8ntqx&currency=usd
+      string: description=sign+up+charge+for+myflix&source=tok_1BMkhOACRY9yqAzKdZbIBKDq&email=Joe%40test.com&plan=base
     headers:
       User-Agent:
       - Stripe/v1 RubyBindings/3.7.0
@@ -15,8 +15,8 @@ http_interactions:
       - application/x-www-form-urlencoded
       X-Stripe-Client-User-Agent:
       - '{"bindings_version":"3.7.0","lang":"ruby","lang_version":"2.2.8 p477 (2017-09-14)","platform":"x86_64-darwin17","engine":"ruby","publisher":"stripe","uname":"Darwin
-        DAVIDs-Air 17.0.0 Darwin Kernel Version 17.0.0: Thu Aug 24 21:48:19 PDT 2017;
-        root:xnu-4570.1.46~2/RELEASE_X86_64 x86_64","hostname":"DAVIDs-Air"}'
+        DAVIDs-MacBook-Air.local 17.0.0 Darwin Kernel Version 17.0.0: Thu Aug 24 21:48:19
+        PDT 2017; root:xnu-4570.1.46~2/RELEASE_X86_64 x86_64","hostname":"DAVIDs-MacBook-Air.local"}'
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
@@ -29,11 +29,11 @@ http_interactions:
       Server:
       - nginx
       Date:
-      - Sun, 05 Nov 2017 00:43:10 GMT
+      - Fri, 10 Nov 2017 22:10:07 GMT
       Content-Type:
       - application/json
       Content-Length:
-      - '1770'
+      - '3390'
       Connection:
       - keep-alive
       Access-Control-Allow-Credentials:
@@ -49,7 +49,7 @@ http_interactions:
       Cache-Control:
       - no-cache, no-store
       Request-Id:
-      - req_AlxhNTaLRN8TnU
+      - req_vHlfa727MGTAaP
       Stripe-Version:
       - '2017-08-15'
       Strict-Transport-Security:
@@ -58,78 +58,126 @@ http_interactions:
       encoding: UTF-8
       string: |
         {
-          "id": "ch_1BKcEDACRY9yqAzKXoIfDDZl",
-          "object": "charge",
-          "amount": 999,
-          "amount_refunded": 0,
-          "application": null,
-          "application_fee": null,
-          "balance_transaction": "txn_1BKcEDACRY9yqAzKLZwhzifc",
-          "captured": true,
-          "created": 1509842589,
+          "id": "cus_BkFBY06y2esT1I",
+          "object": "customer",
+          "account_balance": 0,
+          "created": 1510351806,
           "currency": "usd",
-          "customer": null,
-          "description": "sign up charge for Joe Smith",
-          "destination": null,
-          "dispute": null,
-          "failure_code": null,
-          "failure_message": null,
-          "fraud_details": {},
-          "invoice": null,
+          "default_source": "card_1BMkhOACRY9yqAzK9fPX0cVa",
+          "delinquent": false,
+          "description": "sign up charge for myflix",
+          "discount": null,
+          "email": "Joe@test.com",
           "livemode": false,
           "metadata": {},
-          "on_behalf_of": null,
-          "order": null,
-          "outcome": {
-            "network_status": "approved_by_network",
-            "reason": null,
-            "risk_level": "normal",
-            "seller_message": "Payment complete.",
-            "type": "authorized"
-          },
-          "paid": true,
-          "receipt_email": null,
-          "receipt_number": null,
-          "refunded": false,
-          "refunds": {
-            "object": "list",
-            "data": [],
-            "has_more": false,
-            "total_count": 0,
-            "url": "/v1/charges/ch_1BKcEDACRY9yqAzKXoIfDDZl/refunds"
-          },
-          "review": null,
           "shipping": null,
-          "source": {
-            "id": "card_1BKcEDACRY9yqAzKqRyVKEyr",
-            "object": "card",
-            "address_city": null,
-            "address_country": null,
-            "address_line1": null,
-            "address_line1_check": null,
-            "address_line2": null,
-            "address_state": null,
-            "address_zip": "12345",
-            "address_zip_check": "pass",
-            "brand": "Visa",
-            "country": "US",
-            "customer": null,
-            "cvc_check": "pass",
-            "dynamic_last4": null,
-            "exp_month": 1,
-            "exp_year": 2019,
-            "fingerprint": "q2TyZusZTFXy5XkY",
-            "funding": "credit",
-            "last4": "4242",
-            "metadata": {},
-            "name": null,
-            "tokenization_method": null
+          "sources": {
+            "object": "list",
+            "data": [
+              {
+                "id": "card_1BMkhOACRY9yqAzK9fPX0cVa",
+                "object": "card",
+                "address_city": null,
+                "address_country": null,
+                "address_line1": null,
+                "address_line1_check": null,
+                "address_line2": null,
+                "address_state": null,
+                "address_zip": "12345",
+                "address_zip_check": "pass",
+                "brand": "Visa",
+                "country": "US",
+                "customer": "cus_BkFBY06y2esT1I",
+                "cvc_check": "pass",
+                "dynamic_last4": null,
+                "exp_month": 1,
+                "exp_year": 2019,
+                "fingerprint": "q2TyZusZTFXy5XkY",
+                "funding": "credit",
+                "last4": "4242",
+                "metadata": {},
+                "name": null,
+                "tokenization_method": null
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_BkFBY06y2esT1I/sources"
           },
-          "source_transfer": null,
-          "statement_descriptor": null,
-          "status": "succeeded",
-          "transfer_group": null
+          "subscriptions": {
+            "object": "list",
+            "data": [
+              {
+                "id": "sub_BkFBAIkIG23ah7",
+                "object": "subscription",
+                "application_fee_percent": null,
+                "billing": "charge_automatically",
+                "cancel_at_period_end": false,
+                "canceled_at": null,
+                "created": 1510351806,
+                "current_period_end": 1512943806,
+                "current_period_start": 1510351806,
+                "customer": "cus_BkFBY06y2esT1I",
+                "discount": null,
+                "ended_at": null,
+                "items": {
+                  "object": "list",
+                  "data": [
+                    {
+                      "id": "si_BkFBlkUv2HIKzB",
+                      "object": "subscription_item",
+                      "created": 1510351807,
+                      "metadata": {},
+                      "plan": {
+                        "id": "base",
+                        "object": "plan",
+                        "amount": 999,
+                        "created": 1510339126,
+                        "currency": "usd",
+                        "interval": "month",
+                        "interval_count": 1,
+                        "livemode": false,
+                        "metadata": {},
+                        "name": "myflix base",
+                        "statement_descriptor": null,
+                        "trial_period_days": null
+                      },
+                      "quantity": 1
+                    }
+                  ],
+                  "has_more": false,
+                  "total_count": 1,
+                  "url": "/v1/subscription_items?subscription=sub_BkFBAIkIG23ah7"
+                },
+                "livemode": false,
+                "metadata": {},
+                "plan": {
+                  "id": "base",
+                  "object": "plan",
+                  "amount": 999,
+                  "created": 1510339126,
+                  "currency": "usd",
+                  "interval": "month",
+                  "interval_count": 1,
+                  "livemode": false,
+                  "metadata": {},
+                  "name": "myflix base",
+                  "statement_descriptor": null,
+                  "trial_period_days": null
+                },
+                "quantity": 1,
+                "start": 1510351806,
+                "status": "active",
+                "tax_percent": null,
+                "trial_end": null,
+                "trial_start": null
+              }
+            ],
+            "has_more": false,
+            "total_count": 1,
+            "url": "/v1/customers/cus_BkFBY06y2esT1I/subscriptions"
+          }
         }
     http_version: 
-  recorded_at: Sun, 05 Nov 2017 00:43:10 GMT
-recorded_with: VCR 3.0.0
+  recorded_at: Fri, 10 Nov 2017 22:10:33 GMT
+recorded_with: VCR 3.0.1

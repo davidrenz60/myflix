@@ -12,8 +12,8 @@ class Video < ActiveRecord::Base
     results = where("lower(title) LIKE ?", "%#{title.downcase}%").order("created_at DESC")
   end
 
-  def average_rating
-    average = Review.where(video_id: id).average(:rating)
+  def rating
+    average = reviews.average(:rating)
     average.round(1) if average
   end
 end
