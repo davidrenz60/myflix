@@ -1,36 +1,73 @@
 require "spec_helper"
 
 describe StripeWrapper do
-  describe ".create" do
-    let(:token) do
-      Stripe::Token.create(
-        card: {
-          number: card_number,
-          exp_month: 10,
-          exp_year: 2018,
-          cvc: "314"
-        }
-      ).id
-    end
+  let(:valid_token) do
+    Stripe::Token.create(
+      card: {
+        number: 4242424242424242,
+        exp_month: 10,
+        exp_year: 2018,
+        cvc: "314"
+      }
+    ).id
+  end
 
-    context "with valid card number", :vcr do
-      let(:card_number) { 4242424242424242 }
-      let(:charge) { StripeWrapper::Charge.create(amount: 999, source: token) }
+  let(:invalid_token) do
+    Stripe::Token.create(
+      card: {
+        number: 4000000000000002,
+        exp_month: 10,
+        exp_year: 2018,
+        cvc: "314"
+      }
+    ).id
+  end
 
-      it "charges the card" do
-        expect(charge).to be_successful
+  describe StripeWrapper::Charge do
+    describe ".create" do
+      context "with valid card number", :vcr do
+        let(:charge) { StripeWrapper::Charge.create(amount: 999, source: valid_token) }
+
+        it "charges the card" do
+          expect(charge).to be_successful
+        end
+      end
+
+      context "with invalid card number", :vcr do
+        let(:charge) { StripeWrapper::Charge.create(amount: 999, source: invalid_token) }
+
+        it "does not charge the card" do
+          expect(charge).not_to be_successful
+        end
+        it "contains an error message" do
+          expect(charge.error_message).to eq("Your card was declined.")
+        end
       end
     end
+  end
 
-    context "with invalid card number", :vcr do
-      let(:card_number) { 4000000000000002 }
-      let(:charge) { StripeWrapper::Charge.create(amount: 999, source: token) }
+  describe StripeWrapper::Customer do
+    describe ".create" do
+      let(:alice) { Fabricate("user") }
 
-      it "does not charge the card" do
-        expect(charge).not_to be_successful
+      context "with valid credit card", :vcr do
+        let(:customer) { StripeWrapper::Customer.create(description: "new customer", source: valid_token, user: alice) }
+
+        it "creates a customer with a valid credit card" do
+          expect(customer).to be_successful
+        end
       end
-      it "contains an error message" do
-        expect(charge.error_message).to eq("Your card was declined.")
+
+      context "with invalid credit card", :vcr do
+        let(:customer) { StripeWrapper::Customer.create(description: "new customer", source: invalid_token, user: alice) }
+
+        it "does not create a customer" do
+          expect(customer).not_to be_successful
+        end
+
+        it "contains an error message" do
+          expect(customer.error_message).to eq("Your card was declined.")
+        end
       end
     end
   end

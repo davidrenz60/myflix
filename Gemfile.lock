@@ -91,6 +91,11 @@ GEM
     database_cleaner (1.6.2)
     debug_inspector (0.0.3)
     diff-lcs (1.3)
+    draper (2.1.0)
+      actionpack (>= 3.0)
+      activemodel (>= 3.0)
+      activesupport (>= 3.0)
+      request_store (~> 1.0)
     erubi (1.7.0)
     erubis (2.7.0)
     eventmachine (1.0.4)
@@ -182,6 +187,7 @@ GEM
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
     redis (3.3.5)
+    request_store (1.3.2)
     rspec-core (3.5.4)
       rspec-support (~> 3.5.0)
     rspec-expectations (3.5.0)
@@ -275,6 +281,7 @@ DEPENDENCIES
   carrierwave-aws
   coffee-rails
   database_cleaner
+  draper
   eventmachine (= 1.0.4)
   fabrication
   faker
