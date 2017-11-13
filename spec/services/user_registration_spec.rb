@@ -3,7 +3,7 @@ require "spec_helper"
 describe UserRegistration do
   describe "#register" do
     context "with valid information and no invitation" do
-      let(:customer) { double("customer", successful?: true) }
+      let(:customer) { double("customer", successful?: true, token: "abcd") }
 
       before do
         expect(StripeWrapper::Customer).to receive(:create).and_return(customer)
@@ -21,12 +21,16 @@ describe UserRegistration do
       it "sends an email with the user's name" do
         expect(ActionMailer::Base.deliveries.last.body).to include("Joe Smith")
       end
+
+      it "stores the stripe customer token for the new user" do
+        expect(User.first.customer_token).to be_present
+      end
     end
 
     context "with valid information and invitation" do
       let(:alice) { Fabricate(:user) }
       let(:invitation) { Fabricate(:invitation, inviter: alice, recipient_email: "joe@example.com") }
-      let(:customer) { double("customer", successful?: true) }
+      let(:customer) { double("customer", successful?: true, token: "abcd") }
 
       before do
         expect(StripeWrapper::Customer).to receive(:create).and_return(customer)

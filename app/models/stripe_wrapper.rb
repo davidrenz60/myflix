@@ -46,7 +46,7 @@ module StripeWrapper
       end
     end
 
-    def id
+    def token
       response.id
     end
   end

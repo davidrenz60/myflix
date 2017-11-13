@@ -12,6 +12,7 @@ describe User do
   it { should have_many(:leading_relationships).class_name("Relationship").with_foreign_key("leader_id") }
   it { should have_many(:leaders).through(:following_relationships) }
   it { should have_many(:following_relationships).class_name("Relationship").with_foreign_key("follower_id") }
+  it { should have_many(:payments) }
 
   it_behaves_like "tokenable" do
     let(:model) { Fabricate(:user) }
@@ -57,6 +58,15 @@ describe User do
     it "does not let the user follow oneself" do
       alice.follow(alice)
       expect(alice.follows?(alice)).to eq(false)
+    end
+  end
+
+  describe "#deactivate!" do
+    let(:alice) { Fabricate(:user, active: true) }
+
+    it "sets the user's status to false" do
+      alice.deactivate!
+      expect(alice).not_to be_active
     end
   end
 end
