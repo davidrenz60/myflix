@@ -15,6 +15,7 @@ class UserRegistration
 
       if customer.successful?
         @status = :success
+        @user.customer_token = customer.token
         @user.save
         handle_invitations(invitation_token)
         UserMailer.perform_async(@user.id)
