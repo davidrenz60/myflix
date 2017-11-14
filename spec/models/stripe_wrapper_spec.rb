@@ -56,6 +56,10 @@ describe StripeWrapper do
         it "creates a customer with a valid credit card" do
           expect(customer).to be_successful
         end
+
+        it "returns the customer token" do
+          expect(customer.token).to be_present
+        end
       end
 
       context "with invalid credit card", :vcr do
