@@ -3,6 +3,8 @@ machine:
     PATH: "${HOME}/${CIRCLE_PROJECT_REPONAME}/firefox:${PATH}"
   ruby:
     version: 2.2.8
+  services:
+    - elasticsearch
 dependencies:
   pre:
     - echo "export rvm_ignore_gemsets_flag=1" >> ~/.rvmrc

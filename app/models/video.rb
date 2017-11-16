@@ -1,4 +1,7 @@
 class Video < ActiveRecord::Base
+  include Elasticsearch::Model
+  include Elasticsearch::Model::Callbacks
+
   belongs_to :category
   has_many :reviews, -> { order(created_at: :desc) }
 
@@ -10,6 +13,28 @@ class Video < ActiveRecord::Base
   def self.search_by_title(title)
     return [] if title.blank?
     results = where("lower(title) LIKE ?", "%#{title.downcase}%").order("created_at DESC")
+  end
+
+  def self.search(query)
+    search_definition = {
+      query: {
+        bool: {
+          must: {
+            multi_match: {
+              query: query,
+              fields: ["title", "description"],
+              operator: "and"
+            }
+          }
+        }
+      }
+    }
+
+    __elasticsearch__.search(search_definition)
+  end
+
+  def as_indexed_json(options={})
+    as_json(only: [:title, :description])
   end
 
   def rating

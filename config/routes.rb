@@ -15,6 +15,7 @@ Myflix::Application.routes.draw do
     resources :reviews, only: [:create]
     collection do
       get :search
+      get :advanced_search
     end
   end
 
