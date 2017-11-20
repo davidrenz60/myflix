@@ -57,9 +57,9 @@ describe ReviewsController do
 
         it 'sets @reviews' do
           set_current_user
-          review = Fabricate(:review, video: video)
+          Fabricate(:review, video: video)
           post :create, video_id: video.id, review: { rating: 3 }
-          expect(assigns(:reviews)).to eq(video.reviews)
+          expect(assigns(:reviews)).to eq(video.reload.reviews)
         end
 
         it 'sets @video' do
